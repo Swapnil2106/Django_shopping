@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Welcome {{username}}</a>
+        <a href="/userorders/" class="nav-item" style="text-decoration: none; color:white">My Orders</a>
+        <a href="/userlogout/" style="margin-right: 20px;" class="btn btn-danger">Logout</a>
+    </div>
+</nav>
+{% for message in messages %}
+<p style="text-align: center;color:green">{{message}}</p>
+{% endfor %}
+<form method="POST" action="/placeorder/">
+    {% csrf_token %}
+    <div class="container" style="margin: auto;width: 1200px;">
+        <table style="width:100%">
+            <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+            </tr>
+            {% for product in products %}
+            <tr>
+                <td><img style=" padding: 10px;width: 180px;height:180px ;" class="image" src="{{product.img.url}}"></td>
+                <td>{{product.name}}</td>
+                <td>{{product.price}}</td>
+                <td><input type="number" min="0" value="0" style="width: 60px;" name="{{product.id}}"></td>
+            </tr>
+            {% endfor %}
+        </table>
+        <input type="text" style="margin-top: 55px;width: 900px;" placeholder="Address" name="address">
+        <input type="submit" style="float:right;margin-top: 50px;margin-bottom: 50px;" value="Place Order" name=""
+            class="btn btn-outline-success">
+    </div>
+</form>
+
+{% endblock %}

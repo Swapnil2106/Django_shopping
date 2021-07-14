@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Welcome {{username}}</a>
+        <a href="/userorders/" class="nav-item" style="text-decoration: none; color:white;">My Orders</a>
+        <a href="/cart/" class="nav-item" style="text-decoration: none; color:white;">Cart</a>
+        <a href="/userlogout/" style="margin-right: 20px;" class="btn btn-danger">Logout</a>
+    </div>
+</nav>
+
+	<div class="row row-cols-1 row-cols-md-3 g-4">
+		{% for product in products %}
+		<div class="col">   
+		    <div class="card" style="width: 300px; margin-left: 100px;margin-top: 50px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);margin-bottom: 30px;">
+		        <img style="padding-top: 40px;width: 200px;display: block;margin: auto;" class="card-img-top" src="{{product.img.url}}">	
+		        <div class="card-body">
+		            <h5 class="card-title" style="text-align:center;">{{product.name}}</h5>
+		            <p class="card-text" style="text-align:center;">Rs: {{product.price}}</p>
+		            <a href="/addcart/" class="btn btn-outline-success" style="width: 150px;display:block;margin: auto;">Add to Cart</a>
+		        </div>
+		    </div>
+		</div>
+		{% endfor %}
+	</div>
+{% endblock %}

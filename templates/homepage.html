@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" style="margin-left: 15px;">Men's Clothing & Essentials</a>
+    <a href="/loginuser/" class="btn btn-success" style="margin-right: 15px;">Login</a>
+  </div>
+</nav>
+
+{% for message in messages %}
+<p style="text-align: center; color:blue;">{{message}}</p>
+{% endfor %}
+
+<div class="container-fluid" style="position: relative;height:677px;background-image: url('https://images.pexels.com/photos/994517/pexels-photo-994517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');">
+	<div class="container" style="position: relative;top:120px; width: 500px;height: 350px;margin-right: 150px;margin-left: 900px;padding: 30px; background-color: #343A40;border-radius: 30px;">
+		<h1 style="color: white;text-align: center;">SIGN UP</h1>
+		<form method="POST" action="/signupuser/">
+			{% csrf_token %}
+			<input type="text" class="form-control" name="username" placeholder="Username" style="width: 400px;display: block;margin: auto;margin-top: 20px;">
+			<input type="password" class="form-control" name="password" placeholder="Password" style="width: 400px;display: block;margin: auto;margin-top: 20px;">
+			<input type="text" class="form-control" name="phoneno" placeholder="Phone No" style="width: 400px;display: block;margin: auto;margin-top: 20px;">
+			<input type="submit" class="btn btn-success" name="" style="display: block;margin: auto;margin-top: 20px;">
+	    </form>
+	</div>
+</div>
+
+{% endblock %}
